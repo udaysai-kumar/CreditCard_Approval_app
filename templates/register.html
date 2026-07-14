@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+  <section class="auth-visual" data-aos>
+    <div class="eyebrow">Create workspace</div>
+    <h1>Start scoring with <span class="gradient-text">premium credit intelligence.</span></h1>
+    <p class="lede">Create your analyst account and run your first approval prediction with guided validation and an auditable result trail.</p>
+    <div class="grid grid-2" style="margin-top:30px">
+      <div class="card"><div class="card-icon"><i class="fa-solid fa-user-check"></i></div><h3>Validated forms</h3><p>Cleaner applicant data before scoring.</p></div>
+      <div class="card"><div class="card-icon"><i class="fa-solid fa-chart-simple"></i></div><h3>History dashboard</h3><p>Every prediction is saved for review.</p></div>
+    </div>
+  </section>
+
+  <div class="glass-card auth-card" data-aos>
+    <div class="auth-head">
+      <div class="brand-mark" style="margin-bottom:16px"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="eyebrow" style="margin-bottom:10px">Step 1 of 1</div>
+      <h2>Create account</h2>
+      <p>Set up your Meridian decisioning profile.</p>
+    </div>
+    <form method="POST" data-validate novalidate>
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" placeholder="Jordan Blake" required minlength="2" autocomplete="name">
+        <div class="field-error">Please enter your full name.</div>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@bank.com" required autocomplete="email">
+        <div class="field-error">Please enter a valid email address.</div>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password" data-password-strength data-password-input>
+        <button type="button" class="icon-btn password-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+        <div class="field-error">Password must be at least 6 characters.</div>
+      </div>
+      <div class="password-meter" aria-hidden="true"><span></span></div>
+      <div class="field">
+        <label for="confirm_password">Confirm password</label>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Repeat your password" required minlength="6" autocomplete="new-password" data-password-input>
+        <button type="button" class="icon-btn password-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+        <div class="field-error">Please confirm your password.</div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-arrow-right"></i> Create account</button>
+    </form>
+    <div class="auth-switch">Already have an account? <a href="{{ url_for('auth.login') }}">Log in</a></div>
+  </div>
+</div>
+{% endblock %}

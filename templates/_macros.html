@@ -1,0 +1,15 @@
+{% macro gauge(value, label, size=180, risk_class='') %}
+{% set r = (size/2) - 14 %}
+{% set circumference = 3.14159 * r %}
+<div class="gauge-wrap">
+  <svg data-gauge="{{ value }}" width="{{ size }}" height="{{ size/2 + 20 }}" viewBox="0 0 {{ size }} {{ size/2 + 20 }}">
+    <path class="gauge-arc-bg" d="M 14 {{ size/2 + 6 }} A {{ r }} {{ r }} 0 0 1 {{ size - 14 }} {{ size/2 + 6 }}"
+          fill="none" stroke-width="14"/>
+    <path class="gauge-arc-fill {{ risk_class }}" data-circumference="{{ circumference }}"
+          d="M 14 {{ size/2 + 6 }} A {{ r }} {{ r }} 0 0 1 {{ size - 14 }} {{ size/2 + 6 }}"
+          fill="none" stroke-width="14" stroke-dasharray="{{ circumference }}" stroke-dashoffset="{{ circumference }}"/>
+  </svg>
+  <div class="gauge-value">{{ value }}%</div>
+  <div class="gauge-label">{{ label }}</div>
+</div>
+{% endmacro %}

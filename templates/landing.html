@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% from "_macros.html" import gauge %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div data-aos>
+      <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> Meridian credit intelligence</div>
+      <h1>Credit card approvals with <span class="gradient-text">bank-grade clarity.</span></h1>
+      <p class="lede">Score applications in seconds with a modern ML decisioning cockpit that turns applicant data into confidence, risk, reasoning, and an auditable record.</p>
+      <div class="hero-cta">
+        {% if current_user %}
+          <a href="{{ url_for('main.predict') }}" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Run Prediction</a>
+          <a href="{{ url_for('main.dashboard') }}" class="btn btn-ghost"><i class="fa-solid fa-chart-simple"></i> Open Dashboard</a>
+        {% else %}
+          <a href="{{ url_for('auth.register') }}" class="btn btn-primary"><i class="fa-solid fa-arrow-right"></i> Get Started Free</a>
+          <a href="{{ url_for('main.about') }}" class="btn btn-ghost"><i class="fa-solid fa-circle-play"></i> Explore Model</a>
+        {% endif %}
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b data-counter="{{ (best_accuracy or 0)|round(1) }}" data-decimals="1">0</b><span>Model accuracy %</span></div>
+        <div class="hero-stat"><b data-counter="4">0</b><span>Models compared</span></div>
+        <div class="hero-stat"><b data-counter="2">0</b><span>Second response</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-aos data-tilt>
+      <div class="credit-stack">
+        <div class="glass-orbit orbit-1">
+          <span class="eyebrow" style="margin-bottom:6px">Portfolio health</span>
+          <div class="orbit-kpi">92.4%</div>
+          <p style="margin:8px 0 0">Low-risk applications trending up</p>
+        </div>
+        <div class="floating-card">
+          <div class="card-chip"></div>
+          <div class="card-number">4862 9014 7720</div>
+          <div class="card-meta"><span>Meridian</span><span>AI Risk</span></div>
+        </div>
+        <div class="glass-orbit orbit-2">
+          {{ gauge(82, 'Approval Confidence', 180, 'risk-low') }}
+        </div>
+        <div class="glass-orbit orbit-3">
+          <p style="margin:0;color:var(--muted)">Decision</p>
+          <div class="orbit-kpi" style="color:var(--green-600)">Approve</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-aos>
+      <div class="eyebrow">Decision cockpit</div>
+      <h2>Everything a modern credit desk expects.</h2>
+      <p>Premium interface, structured validation, explainable scores, searchable records, and visual model diagnostics in one connected Flask application.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card" data-aos><div class="card-icon"><i class="fa-solid fa-chart-line"></i></div><h3>Real-time scoring</h3><p>Capture applicant, financial, employment, household, and credit signals in a guided workflow.</p></div>
+      <div class="card" data-aos><div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Explainable results</h3><p>Every decision includes confidence, probability, risk level, recommendation, and reasoning.</p></div>
+      <div class="card" data-aos><div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div><h3>Audit-ready history</h3><p>Search, filter, sort, delete, and export prior predictions for review and reporting.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-aos>
+      <div class="eyebrow">Workflow</div>
+      <h2>From application to decision in four steps.</h2>
+    </div>
+    <div class="timeline" data-aos>
+      <div class="timeline-item"><h4>Collect</h4><p>Validated applicant profile, income, employment, assets, and credit-history fields.</p></div>
+      <div class="timeline-item"><h4>Transform</h4><p>Inputs are encoded and aligned to the same feature schema used during training.</p></div>
+      <div class="timeline-item"><h4>Score</h4><p>The promoted model evaluates approval probability and risk tier instantly.</p></div>
+      <div class="timeline-item"><h4>Explain</h4><p>Decision details are stored for dashboard analytics and downloadable history.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:center">
+      <div data-aos>
+        <div class="eyebrow">Machine learning</div>
+        <h2>Built on model comparison, not guesswork.</h2>
+        <p>Logistic Regression, Decision Tree, Random Forest, and Gradient Boosting are trained and evaluated across accuracy, precision, recall, F1, and ROC-AUC. The best performer is promoted for predictions.</p>
+        <a href="{{ url_for('main.performance') if current_user else url_for('auth.login') }}" class="btn btn-ghost"><i class="fa-solid fa-chart-pie"></i> View Performance</a>
+      </div>
+      <div class="grid grid-2" data-aos>
+        <div class="card"><h3>Logistic Regression</h3><p>Fast, interpretable baseline.</p></div>
+        <div class="card"><h3>Decision Tree</h3><p>Human-readable branching logic.</p></div>
+        <div class="card"><h3>Random Forest</h3><p>Stable ensemble voting.</p></div>
+        <div class="card"><h3>Gradient Boosting</h3><p>Sequential error correction.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-aos>
+      <div class="eyebrow">Trusted experience</div>
+      <h2>Designed like a fintech product, not a spreadsheet.</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card" data-aos><p>"The decision summary is clear enough for analysts and polished enough for stakeholders."</p><h3>Credit Ops</h3></div>
+      <div class="card" data-aos><p>"The guided form reduces bad inputs while keeping the workflow fast."</p><h3>Risk Team</h3></div>
+      <div class="card" data-aos><p>"Dashboard history and CSV export make the demo feel production-minded."</p><h3>Model Review</h3></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2">
+      <div class="card" data-aos><h3>Is this connected to a real bank?</h3><p>No. Meridian is an academic demonstration that presents the workflow and UX of a modern banking decision tool.</p></div>
+      <div class="card" data-aos><h3>Does it preserve prediction logic?</h3><p>Yes. The interface uses the same Flask routes, form field names, model files, and database workflow.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section text-center" data-aos>
+  <div class="container">
+    <h2>Run a polished credit decision workflow.</h2>
+    <p style="max-width:560px;margin:0 auto 26px">Create an account, submit applicant details, and review a premium result screen with confidence and risk guidance.</p>
+    <a href="{{ url_for('main.predict') if current_user else url_for('auth.register') }}" class="btn btn-primary">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> {{ 'New Prediction' if current_user else 'Create Free Account' }}
+    </a>
+  </div>
+</section>
+
+{% endblock %}

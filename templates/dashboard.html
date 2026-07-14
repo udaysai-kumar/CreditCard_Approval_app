@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:56px">
+  <div class="container">
+    <div class="predict-header" data-aos>
+      <div>
+        <div class="eyebrow">Command center</div>
+        <h1>Welcome back, {{ current_user['Name'].split(' ')[0] }}</h1>
+        <p>Monitor portfolio decisions, recent activity, and promoted model performance.</p>
+      </div>
+      <a href="{{ url_for('main.predict') }}" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> New Prediction</a>
+    </div>
+
+    <div class="grid grid-4" style="margin-bottom:24px">
+      <div class="card stat-card" data-aos>
+        <div class="stat-top"><span class="stat-label">Total predictions</span><span class="stat-pill pill-blue"><i class="fa-solid fa-layer-group"></i></span></div>
+        <div class="stat-value" data-counter="{{ total }}">0</div>
+      </div>
+      <div class="card stat-card" data-aos>
+        <div class="stat-top"><span class="stat-label">Approved</span><span class="stat-pill pill-green">{{ ((approved/total*100)|round(1)) if total else 0 }}%</span></div>
+        <div class="stat-value" data-counter="{{ approved }}">0</div>
+      </div>
+      <div class="card stat-card" data-aos>
+        <div class="stat-top"><span class="stat-label">Rejected</span><span class="stat-pill pill-red">{{ ((rejected/total*100)|round(1)) if total else 0 }}%</span></div>
+        <div class="stat-value" data-counter="{{ rejected }}">0</div>
+      </div>
+      <div class="card stat-card" data-aos>
+        <div class="stat-top"><span class="stat-label">Model accuracy</span><span class="stat-pill pill-blue">{{ best_model }}</span></div>
+        <div class="stat-value"><span data-counter="{{ model_accuracy }}" data-decimals="1">0</span>%</div>
+      </div>
+    </div>
+
+    <div class="grid dashboard-grid">
+      <div class="card" data-aos>
+        <div style="display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:16px">
+          <div>
+            <div class="eyebrow" style="margin-bottom:8px">Recent activity</div>
+            <h3>Prediction history</h3>
+          </div>
+          <a href="{{ url_for('main.history') }}" class="btn btn-ghost btn-sm">View all <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        {% if recent %}
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Applicant</th><th>Result</th><th>Probability</th><th>Risk</th><th>Date</th></tr></thead>
+            <tbody>
+              {% for r in recent %}
+              <tr>
+                <td>{{ r['ApplicantName'] }}</td>
+                <td><span class="badge {{ 'pill-green' if r['ApprovalResult']=='Approved' else 'pill-red' }}">{{ r['ApprovalResult'] }}</span></td>
+                <td class="mono">{{ r['Probability'] }}%</td>
+                <td>{{ r['RiskLevel'] }}</td>
+                <td>{{ r['PredictionDate'] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <div style="padding:36px 0;text-align:center">
+          <i class="fa-solid fa-wand-magic-sparkles" style="font-size:34px;color:var(--green-600);margin-bottom:12px"></i>
+          <h3>No predictions yet</h3>
+          <p>Run your first application score to populate this dashboard.</p>
+          <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-sm">Run Prediction</a>
+        </div>
+        {% endif %}
+      </div>
+
+      <aside class="grid" style="gap:24px">
+        <div class="card" data-aos>
+          <div class="eyebrow" style="margin-bottom:8px">Profile</div>
+          <div style="display:flex;gap:14px;align-items:center;margin-bottom:18px">
+            <div class="brand-mark" style="width:58px;height:58px;border-radius:20px;font-size:22px"><i class="fa-solid fa-user"></i></div>
+            <div><h3 style="margin:0">{{ current_user['Name'] }}</h3><p style="margin:0">{{ current_user['Email'] }}</p></div>
+          </div>
+          <div class="result-detail-row"><span>Workspace</span><span>Meridian</span></div>
+          <div class="result-detail-row"><span>Role</span><span>Analyst</span></div>
+          <div class="result-detail-row"><span>Security</span><span style="color:var(--green-600)">Active</span></div>
+        </div>
+        <div class="card" data-aos>
+          <div class="eyebrow" style="margin-bottom:8px">Model comparison</div>
+          <img src="{{ url_for('static', filename='images/charts/model_comparison.png') }}" alt="Model comparison chart" loading="lazy">
+          <a href="{{ url_for('main.performance') }}" class="btn btn-ghost btn-sm" style="margin-top:16px">Full report</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{% endblock %}

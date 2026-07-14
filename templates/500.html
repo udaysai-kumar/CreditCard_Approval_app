@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Server Error{% endblock %}
+{% block content %}
+<div class="error-shell">
+  <div class="code">500</div>
+  <h2>Something went wrong on our end</h2>
+  <p style="max-width:400px">Our team has been notified. Please try again in a moment.</p>
+  <a href="{{ url_for('main.landing') }}" class="btn btn-primary"><i class="fa-solid fa-house"></i> Back to home</a>
+</div>
+{% endblock %}

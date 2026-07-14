@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% from "_macros.html" import gauge %}
+{% block title %}Prediction Result{% endblock %}
+{% block content %}
+<div class="result-shell">
+  <div class="glass-card result-status" data-aos>
+    <div class="result-icon {{ 'approved' if result.prediction=='Approved' else 'rejected' }}">
+      <i class="fa-solid {{ 'fa-circle-check' if result.prediction=='Approved' else 'fa-circle-xmark' }}"></i>
+    </div>
+    <h2 style="margin-bottom:4px">Credit Card {{ result.prediction }}</h2>
+    <p style="margin-bottom:26px">Application for <strong>{{ applicant_name }}</strong></p>
+
+    {{ gauge(result.approval_probability, 'Approval Probability', 200,
+        'risk-low' if result.risk_level=='Low Risk' else 'risk-medium' if result.risk_level=='Medium Risk' else 'risk-high') }}
+
+    <div style="text-align:left;margin-top:30px">
+      <div class="result-detail-row"><span>Prediction</span><span>{{ result.prediction }}</span></div>
+      <div class="result-detail-row"><span>Confidence score</span><span>{{ result.confidence }}%</span></div>
+      <div class="result-detail-row"><span>Risk level</span><span>{{ result.risk_level }}</span></div>
+      <div class="result-detail-row"><span>Recommendation</span><span style="text-align:right;max-width:260px">{{ result.recommendation }}</span></div>
+    </div>
+
+    <div style="text-align:left;margin-top:20px">
+      <h4 style="font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-400)">Reasoning</h4>
+      <ul class="reasoning-list">
+        {% for reason in result.reasoning %}
+        <li>{{ reason }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:30px">
+      <a href="{{ url_for('main.predict') }}" class="btn btn-ghost btn-block">New Prediction</a>
+      <a href="{{ url_for('main.history') }}" class="btn btn-primary btn-block">View History</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_scripts %}
+{% if result.prediction == 'Approved' %}
+<script>document.addEventListener('DOMContentLoaded', () => setTimeout(celebrateApproval, 400));</script>
+{% endif %}
+{% endblock %}

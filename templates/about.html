@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:60px">
+  <div class="container" style="max-width:820px">
+    <div class="eyebrow" data-aos>About the project</div>
+    <h1 data-aos>AI Credit Card Approval Prediction System</h1>
+    <p data-aos style="font-size:17px">Meridian is an end-to-end banking decision-support system that predicts
+      whether a credit-card application should be approved or rejected, using supervised machine learning trained
+      on applicant demographic, financial, and credit-history data.</p>
+
+    <div class="grid grid-2" style="margin:40px 0">
+      <div class="card" data-aos>
+        <div class="card-icon"><i class="fa-solid fa-database"></i></div>
+        <h3>Data pipeline</h3>
+        <p>Duplicate removal, missing-value handling, feature engineering (age and employment tenure from raw
+          date fields), and categorical encoding — mirroring production-grade preprocessing.</p>
+      </div>
+      <div class="card" data-aos>
+        <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>Model selection</h3>
+        <p>Four classifiers are trained and scored on accuracy, precision, recall, F1, and ROC-AUC. The
+          highest-F1 model is automatically promoted to production.</p>
+      </div>
+      <div class="card" data-aos>
+        <div class="card-icon"><i class="fa-solid fa-lock"></i></div>
+        <h3>Secure by design</h3>
+        <p>Passwords are hashed with Werkzeug's PBKDF2 implementation; sessions are server-side and
+          cookie-scoped; every prediction is tied to an authenticated user.</p>
+      </div>
+      <div class="card" data-aos>
+        <div class="card-icon"><i class="fa-solid fa-table-list"></i></div>
+        <h3>Full audit trail</h3>
+        <p>Every applicant record and prediction outcome is persisted to SQLite and available for search,
+          filtering, sorting, and CSV export.</p>
+      </div>
+    </div>
+
+    <div class="card" data-aos style="padding:28px">
+      <h3>Disclaimer</h3>
+      <p style="margin:0">This is an academic / portfolio demonstration project built for an internship
+        submission. It is trained on synthetically generated data that mirrors the structure of the public
+        "Credit Card Approval Prediction" dataset, and is not connected to any real banking system or bureau.
+        It should not be used for actual lending decisions.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

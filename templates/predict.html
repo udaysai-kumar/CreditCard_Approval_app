@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block title %}New Prediction{% endblock %}
+{% block content %}
+<div class="predict-shell">
+  <div class="predict-header" data-aos>
+    <div>
+      <div class="eyebrow">New Application</div>
+      <h1>Score a credit card application</h1>
+      <p>Enter the applicant's details below. The sticky progress indicator tracks completion as you work.</p>
+    </div>
+    <div class="card" style="padding:16px 18px;min-width:220px">
+      <span class="stat-label">Estimated scoring time</span>
+      <div class="stat-value" style="font-size:28px">2s</div>
+    </div>
+  </div>
+
+  <div class="predict-progress" aria-hidden="true"><span id="formProgress"></span></div>
+  <form method="POST" data-validate novalidate class="glass-card prediction-form">
+
+    <div class="form-section">
+      <h3><i class="fa-solid fa-id-card"></i> Applicant Information</h3>
+      <div class="field-row">
+        <div class="field">
+          <label for="applicant_name">Applicant name</label>
+          <input type="text" id="applicant_name" name="applicant_name" value="{{ form.get('applicant_name','') }}" placeholder="Full name" required>
+          <div class="field-error">Applicant name is required.</div>
+        </div>
+        <div class="field">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" min="18" max="100" value="{{ form.get('age','') }}" required>
+          <div class="field-error">Age must be between 18 and 100.</div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="{{ form.get('email','') }}" placeholder="applicant@email.com" required>
+          <div class="field-error">A valid email is required.</div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="phone_number">Phone number</label>
+        <input type="tel" id="phone_number" name="phone_number" value="{{ form.get('phone_number','') }}" placeholder="+1 555 000 0000">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3><i class="fa-solid fa-sack-dollar"></i> Financial Details</h3>
+      <div class="field-row">
+        <div class="field">
+          <label for="income">Annual income (USD)</label>
+          <input type="number" id="income" name="income" min="0" step="100" value="{{ form.get('income','') }}" required>
+          <div class="field-error">Please enter a valid income.</div>
+        </div>
+        <div class="field">
+          <label for="income_type">Employment status</label>
+          <select id="income_type" name="income_type">
+            <option>Working</option>
+            <option>Commercial associate</option>
+            <option>Pensioner</option>
+            <option>State servant</option>
+            <option>Student</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="occupation_type">Occupation</label>
+          <select id="occupation_type" name="occupation_type">
+            {% for occ in ["Laborers","Core staff","Sales staff","Managers","Drivers","High skill tech staff","Accountants","Medicine staff","IT staff","Unemployed"] %}
+            <option>{{ occ }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label for="employed_years">Years employed</label>
+          <input type="number" id="employed_years" name="employed_years" min="0" max="60" value="{{ form.get('employed_years','0') }}">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3><i class="fa-solid fa-house-user"></i> Household & Education</h3>
+      <div class="field-row">
+        <div class="field">
+          <label for="education_type">Education</label>
+          <select id="education_type" name="education_type">
+            <option>Secondary / secondary special</option>
+            <option>Higher education</option>
+            <option>Incomplete higher</option>
+            <option>Lower secondary</option>
+            <option>Academic degree</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="family_status">Family status</label>
+          <select id="family_status" name="family_status">
+            <option>Married</option>
+            <option>Single / not married</option>
+            <option>Civil marriage</option>
+            <option>Separated</option>
+            <option>Widow</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="housing_type">Housing type</label>
+          <select id="housing_type" name="housing_type">
+            <option>House / apartment</option>
+            <option>With parents</option>
+            <option>Municipal apartment</option>
+            <option>Rented apartment</option>
+            <option>Office apartment</option>
+            <option>Co-op apartment</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="family_members">Family members</label>
+          <input type="number" id="family_members" name="family_members" min="1" max="15" value="{{ form.get('family_members','1') }}">
+        </div>
+      </div>
+      <div class="field">
+        <label for="children">Number of children</label>
+        <input type="number" id="children" name="children" min="0" max="10" value="{{ form.get('children','0') }}">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3><i class="fa-solid fa-file-invoice-dollar"></i> Assets & Credit History</h3>
+      <div class="field-row">
+        <div class="field">
+          <label for="own_car">Owned car</label>
+          <select id="own_car" name="own_car"><option value="Y">Yes</option><option value="N">No</option></select>
+        </div>
+        <div class="field">
+          <label for="own_realty">Owned realty</label>
+          <select id="own_realty" name="own_realty"><option value="Y">Yes</option><option value="N">No</option></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="overdue_status">Overdue payment history</label>
+        <select id="overdue_status" name="overdue_status">
+          <option value="0">No overdue payments</option>
+          <option value="1">Minor overdue (1-29 days)</option>
+          <option value="2">Moderate overdue (30-59 days)</option>
+          <option value="3">Severe overdue (60+ days)</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="checkbox-row"><input type="checkbox" name="work_phone" value="1" id="work_phone"><label for="work_phone" style="margin:0">Has work phone on file</label></div>
+        <div class="checkbox-row"><input type="checkbox" name="phone" value="1" id="phone" checked><label for="phone" style="margin:0">Has phone on file</label></div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-wand-magic-sparkles"></i> Run Prediction</button>
+  </form>
+</div>
+{% endblock %}

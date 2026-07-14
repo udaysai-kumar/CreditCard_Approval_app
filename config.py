@@ -1,0 +1,13 @@
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+class Config:
+    SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production-2026")
+    DATABASE_PATH = os.path.join(BASE_DIR, "database.db")
+    MODEL_DIR = os.path.join(BASE_DIR, "model")
+    CHARTS_DIR = os.path.join(BASE_DIR, "static", "images", "charts")
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = "Lax"
+    MAX_CONTENT_LENGTH = 2 * 1024 * 1024  # 2 MB

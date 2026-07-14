@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Prediction History{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:24px">
+      <div>
+        <div class="eyebrow">Records</div>
+        <h1 style="margin:0">Prediction History</h1>
+      </div>
+      <a href="{{ url_for('main.export_history') }}" class="btn btn-ghost"><i class="fa-solid fa-file-export"></i> Export CSV</a>
+    </div>
+
+    <form method="GET" class="filter-bar">
+      <input type="text" name="search" placeholder="Search applicant name…" value="{{ search }}">
+      <select name="status">
+        <option value="" {{ 'selected' if not status }}>All statuses</option>
+        <option value="Approved" {{ 'selected' if status=='Approved' }}>Approved</option>
+        <option value="Rejected" {{ 'selected' if status=='Rejected' }}>Rejected</option>
+      </select>
+      <select name="sort">
+        <option value="PredictionDate" {{ 'selected' if sort=='PredictionDate' }}>Sort: Date</option>
+        <option value="ApplicantName" {{ 'selected' if sort=='ApplicantName' }}>Sort: Name</option>
+        <option value="Probability" {{ 'selected' if sort=='Probability' }}>Sort: Probability</option>
+      </select>
+      <select name="order">
+        <option value="DESC" {{ 'selected' if order=='DESC' }}>Descending</option>
+        <option value="ASC" {{ 'selected' if order=='ASC' }}>Ascending</option>
+      </select>
+      <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+    </form>
+
+    {% if rows %}
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Applicant</th><th>Result</th><th>Probability</th><th>Risk Level</th><th>Model</th><th>Date</th><th></th></tr></thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td>{{ r['ApplicantName'] }}</td>
+            <td><span class="badge {{ 'pill-green' if r['ApprovalResult']=='Approved' else 'pill-red' }}">{{ r['ApprovalResult'] }}</span></td>
+            <td class="mono">{{ r['Probability'] }}%</td>
+            <td>{{ r['RiskLevel'] }}</td>
+            <td>{{ r['ModelUsed'] }}</td>
+            <td>{{ r['PredictionDate'] }}</td>
+            <td>
+              <form method="POST" action="{{ url_for('main.delete_history', prediction_id=r['PredictionID']) }}" onsubmit="return confirm('Delete this record?')">
+                <button type="submit" class="icon-btn" style="width:32px;height:32px;color:var(--red-600)"><i class="fa-solid fa-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="card text-center" style="padding:60px 20px">
+      <i class="fa-solid fa-inbox" style="font-size:34px;color:var(--ink-400);margin-bottom:14px"></i>
+      <h3>No records found</h3>
+      <p>Try adjusting your filters, or <a href="{{ url_for('main.predict') }}">run a new prediction</a>.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

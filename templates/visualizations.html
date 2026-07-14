@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Data Visualizations{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <div class="eyebrow">Exploratory Analysis</div>
+    <h1>Data Visualizations</h1>
+    <p style="max-width:600px">Charts generated automatically during training, covering distributions,
+      correlations, and model diagnostics.</p>
+
+    {% if charts %}
+    <div class="grid grid-3" style="margin-top:30px">
+      {% for chart in charts %}
+      <div class="card chart-card" data-aos>
+        <img src="{{ url_for('static', filename='images/charts/' + chart) }}" alt="{{ chart }}">
+        <h4>{{ chart.rsplit('.',1)[0].replace('_',' ').title() }}</h4>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center" style="padding:60px">
+      <p>No charts found yet. Run <code>python train_model.py</code> to generate them.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

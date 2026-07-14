@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Model Performance{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <div class="eyebrow">Model Performance</div>
+    <h1>How the model was chosen</h1>
+    <p style="max-width:600px">Four classifiers were trained on the same preprocessed dataset and compared on
+      five metrics. The model with the highest F1 score was automatically promoted to production.</p>
+
+    {% if metrics %}
+    <div class="card" style="margin:30px 0;padding:0;overflow:hidden">
+      <div class="table-wrap" style="border:none;border-radius:0">
+        <table>
+          <thead><tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1 Score</th><th>ROC-AUC</th><th></th></tr></thead>
+          <tbody>
+            {% for name, m in metrics.results.items() %}
+            <tr>
+              <td>{{ name }}</td>
+              <td class="mono">{{ (m.accuracy*100)|round(2) }}%</td>
+              <td class="mono">{{ (m.precision*100)|round(2) }}%</td>
+              <td class="mono">{{ (m.recall*100)|round(2) }}%</td>
+              <td class="mono">{{ (m.f1_score*100)|round(2) }}%</td>
+              <td class="mono">{{ (m.roc_auc*100)|round(2) }}%</td>
+              <td>{% if name == metrics.best_model %}<span class="badge pill-green"><i class="fa-solid fa-trophy"></i> Best</span>{% endif %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card" data-aos>
+        <h3>Model Comparison</h3>
+        <img src="{{ url_for('static', filename='images/charts/model_comparison.png') }}" alt="Model comparison">
+      </div>
+      <div class="card" data-aos>
+        <h3>ROC Curve Comparison</h3>
+        <img src="{{ url_for('static', filename='images/charts/roc_curves_comparison.png') }}" alt="ROC curves">
+      </div>
+      <div class="card" data-aos>
+        <h3>Confusion Matrix — {{ metrics.best_model.split(' (')[0] }}</h3>
+        <img src="{{ url_for('static', filename='images/charts/confusion_' + metrics.best_model.split(' (')[0].replace(' ','_').lower() + '.png') }}" alt="Confusion matrix">
+      </div>
+      <div class="card" data-aos>
+        <h3>Feature Importance</h3>
+        <img src="{{ url_for('static', filename='images/charts/feature_importance.png') }}" alt="Feature importance">
+      </div>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:var(--ink-400)">
+      Trained on {{ metrics.trained_rows }} applicant records ({{ metrics.test_rows }} held out for testing).
+    </p>
+    {% else %}
+    <div class="card text-center" style="padding:60px">
+      <p>No trained model found yet. Run <code>python train_model.py</code> to generate metrics and charts.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

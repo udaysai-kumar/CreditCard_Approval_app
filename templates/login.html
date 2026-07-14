@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+  <section class="auth-visual" data-aos>
+    <div class="eyebrow">Secure analyst access</div>
+    <h1>Welcome back to <span class="gradient-text">Meridian.</span></h1>
+    <p class="lede">Review recent credit decisions, inspect model performance, and score new applications from a premium banking workspace.</p>
+    <div class="credit-stack" style="margin-top:34px;height:330px">
+      <div class="floating-card" style="inset:20px auto auto 0;width:min(420px,100%)">
+        <div class="card-chip"></div>
+        <div class="card-number">7301 8840 2956</div>
+        <div class="card-meta"><span>Decision Desk</span><span>Secure</span></div>
+      </div>
+      <div class="glass-orbit orbit-2"><p style="margin:0">Live confidence</p><div class="orbit-kpi">88.7%</div></div>
+    </div>
+  </section>
+
+  <div class="glass-card auth-card" data-aos>
+    <div class="auth-head">
+      <div class="brand-mark" style="margin-bottom:16px"><i class="fa-solid fa-shield-halved"></i></div>
+      <h2>Log in</h2>
+      <p>Continue to your credit decision dashboard.</p>
+    </div>
+    <form method="POST" data-validate novalidate>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@bank.com" required autofocus autocomplete="email">
+        <div class="field-error">Please enter a valid email address.</div>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your password" required minlength="1" autocomplete="current-password" data-password-input>
+        <button type="button" class="icon-btn password-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+        <div class="field-error">Please enter your password.</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:14px;align-items:center;margin:-4px 0 20px;color:var(--muted);font-size:13px">
+        <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="remember"> Remember me</label>
+        <a href="{{ url_for('main.contact') }}" style="color:var(--green-600);font-weight:800">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-lock-open"></i> Log in</button>
+    </form>
+    <div class="auth-switch">New to Meridian? <a href="{{ url_for('auth.register') }}">Create an account</a></div>
+  </div>
+</div>
+{% endblock %}

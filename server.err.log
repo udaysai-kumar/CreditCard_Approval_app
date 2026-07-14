@@ -1,0 +1,103 @@
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+127.0.0.1 - - [09/Jul/2026 11:40:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:41:18] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:41:19] "GET /static/js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:41:19] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:45:33] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:45:33] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:45:33] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:45:50] "GET /about HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:45:50] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:45:50] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:45:55] "GET /contact HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:45:55] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:45:55] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:45:58] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:45:58] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:45:58] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:02] "GET /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:46:02] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:02] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:31] "GET /auth/register HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:46:31] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:31] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:46:38] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:38] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:40] "GET /about HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:46:40] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:40] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:40] "GET /contact HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:46:40] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:40] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:46:42] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:46:42] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:03] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:47:03] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:03] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:12] "GET /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:47:12] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:12] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:18] "GET /auth/register HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:47:18] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:18] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:44] "POST /auth/register HTTP/1.1" 302 -
+127.0.0.1 - - [09/Jul/2026 11:47:44] "GET /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:47:44] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:44] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:57] "POST /auth/login HTTP/1.1" 302 -
+127.0.0.1 - - [09/Jul/2026 11:47:57] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:47:57] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:57] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:47:57] "GET /static/images/charts/model_comparison.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:48:32] "GET /predict HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:48:32] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:48:32] "GET /static/js/main.js HTTP/1.1" 304 -
+C:\Users\SUNIL\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator DummyClassifier from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\SUNIL\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\SUNIL\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator GradientBoostingClassifier from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\SUNIL\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\SUNIL\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+127.0.0.1 - - [09/Jul/2026 11:49:30] "POST /predict HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:49:30] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:49:30] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:49:43] "GET /history HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:49:43] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:49:43] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:49:46] "GET /history/export HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:06] "GET /history?search=&status=&sort=PredictionDate&order=DESC HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:06] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:06] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:12] "GET /history?search=ui+builder&status=&sort=PredictionDate&order=DESC HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:12] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:12] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:18] "GET /predict HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:18] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:18] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:19] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:19] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:19] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:19] "GET /static/images/charts/model_comparison.png HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:26] "GET /about HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:26] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:26] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:27] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:27] "GET /static/js/main.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Jul/2026 11:50:59] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:59] "GET /static/js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:50:59] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Jul/2026 11:51:00] "GET /favicon.ico HTTP/1.1" 404 -
