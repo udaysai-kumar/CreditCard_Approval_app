@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+instance/
+.env
+server.err.log
+server.out.log
