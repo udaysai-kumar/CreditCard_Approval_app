@@ -7,6 +7,7 @@ scikit-learn>=1.3
 matplotlib>=3.7
 seaborn>=0.12
 joblib>=1.3
+gunicorn>=21.0
 
 # Optional: if you have XGBoost available on your platform, train_model.py
 # can be extended to use it directly (a GradientBoostingClassifier stand-in
