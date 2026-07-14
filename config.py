@@ -5,7 +5,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production-2026")
-    DATABASE_PATH = os.path.join(BASE_DIR, "database.db")
+    # CHANGE THIS LINE BELOW:
+    DATABASE_PATH = os.environ.get("DATABASE_URL", os.path.join("/tmp", "database.db"))
     MODEL_DIR = os.path.join(BASE_DIR, "model")
     CHARTS_DIR = os.path.join(BASE_DIR, "static", "images", "charts")
     SESSION_COOKIE_HTTPONLY = True
