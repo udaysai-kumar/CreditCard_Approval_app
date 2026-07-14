@@ -6,12 +6,17 @@ Loads the trained model + encoders + scaler and exposes a single
 credit-card application in real time.
 """
 import os
-
 import joblib
 import numpy as np
+import pandas as pd
 
+# Dynamic path resolution that works seamlessly locally and on Render production
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_DIR = os.path.join(BASE_DIR, "model")
+if os.path.exists(os.path.join(BASE_DIR, "model")):
+    MODEL_DIR = os.path.join(BASE_DIR, "model")
+else:
+    # If executed from inside the blueprint subfolder, travel up one level to the root
+    MODEL_DIR = os.path.join(os.path.dirname(BASE_DIR), "model")
 
 _model = None
 _encoders = None
@@ -60,15 +65,12 @@ def predict_application(form: dict):
         "EMPLOYED_YEARS": int(form.get("employed_years", 0)),
         "FLAG_WORK_PHONE": int(form.get("work_phone", 0)),
         "FLAG_PHONE": int(form.get("phone", 0)),
-        # The applicant always supplies an email address on the form,
-        # so FLAG_EMAIL simply means "has an email on file" = 1.
         "FLAG_EMAIL": 1,
         "OCCUPATION_TYPE": _safe_encode(encoders["OCCUPATION_TYPE"], form.get("occupation_type", "Laborers")),
         "CNT_FAM_MEMBERS": int(form.get("family_members", 1)),
         "OVERDUE_STATUS": int(form.get("overdue_status", 0)),
     }
 
-    import pandas as pd
     X = pd.DataFrame([[row[c] for c in feature_cols]], columns=feature_cols)
     X_scaled = scaler.transform(X)
 
